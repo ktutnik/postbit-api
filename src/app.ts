@@ -4,6 +4,7 @@ import Plumier, {
   LoggerFacility,
   WebApiFacility,
   ControllerFacility,
+  authorize,
 } from "plumier";
 import { MongooseFacility } from "@plumier/mongoose";
 import { JwtAuthFacility } from "@plumier/jwt";
@@ -24,6 +25,7 @@ export function createApp(config?: Partial<Configuration>): Promise<Koa> {
     .set(
       new JwtAuthFacility({
         secret: process.env.JWT_SECRET || "fYA3#pM5cPSzRDgZ",
+        global: authorize.public(),
       })
     )
     .set(

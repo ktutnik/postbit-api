@@ -6,17 +6,11 @@ import { EntityBase } from "../_shared";
 @collection()
 @route.controller()
 @authorize.public()
-export class ProductCategory extends EntityBase {
+export class ShopTag extends EntityBase {
   @val.required()
-  name: string;
+  text: string;
 
   @val.required()
   @val.slug()
   slug: string;
-
-  @val.required()
-  shopId: string;
-
-  @noop()
-  parentCategoryId: string;
 }
