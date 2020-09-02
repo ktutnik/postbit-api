@@ -15,6 +15,7 @@ export class Country extends EntityBase {
   @val.required()
   name: string;
 
-  @collection.ref(Province)
+  @route.controller()
+  @collection.ref([Province])
   provinces: Province[];
 }
