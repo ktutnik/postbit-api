@@ -1,13 +1,14 @@
-/*import { MongooseControllerGeneric } from "@plumier/mongoose";
+import { MongooseControllerGeneric } from "@plumier/mongoose";
 import { FormFile, route } from "plumier";
-import { type } from "tinspector";
+import { type, generic } from "tinspector";
 import { v1 } from "uuid";
 
 import { Image } from "./image.entity";
 import { uploadToS3 } from "../../helper/";
 
+@generic.type(Image, String)
 @route.ignore({ applyTo: "save" })
-export class ImageController extends MongooseControllerGeneric<Image, string> {
+export class ImageController extends MongooseControllerGeneric<Image, String> {
   @route.post("")
   @type({ id: String })
   async saveWithImage(file: FormFile, data: Image) {
@@ -18,4 +19,4 @@ export class ImageController extends MongooseControllerGeneric<Image, string> {
     data.location = location;
     return this.repo.insert(data);
   }
-}*/
+}

@@ -27,9 +27,6 @@ export class User extends EntityBase {
   @val.required()
   lastName: string;
 
-  @noop()
-  imageId: string;
-
   @collection.ref(Image)
   image: Image;
 
