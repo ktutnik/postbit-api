@@ -1,7 +1,8 @@
 import { collection } from "@plumier/mongoose";
-import { route, val, authorize } from "plumier";
-import { noop } from "tinspector";
+import { val } from "plumier";
 import { EntityBase } from "../_shared";
+import { UrbanVillage } from "../urban-village/urban-village.entity";
+import { Shop } from "./shop.entity";
 
 @collection()
 export class ShopBranch extends EntityBase {
@@ -15,20 +16,12 @@ export class ShopBranch extends EntityBase {
   address: string;
 
   @val.required()
-  countryId: string;
-
-  @val.required()
-  provinceId: string;
-
-  @val.required()
-  districtId: string;
-
-  @val.required()
-  subDistrictId: string;
-
-  @val.required()
-  urbanVillageId: string;
+  @collection.ref(UrbanVillage)
+  urbanVillage: UrbanVillage;
 
   @val.required()
   active: boolean;
+
+  /*@collection.ref(Shop)
+  shop: Shop;*/
 }

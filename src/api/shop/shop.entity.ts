@@ -4,6 +4,8 @@ import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 import { ShopBranch } from "./shop-branch.entity";
 import { ShopTag } from "./shop-tag.entity";
+import { SubDistrict } from "../sub-district/sub-district.entity";
+import { UrbanVillage } from "../urban-village/urban-village.entity";
 
 @collection()
 @route.controller()
@@ -32,22 +34,8 @@ export class Shop extends EntityBase {
   address: string;
 
   @val.required()
-  countryId: string;
-
-  @val.required()
-  provinceId: string;
-
-  @val.required()
-  districtId: string;
-
-  @val.required()
-  subDistrictId: string;
-
-  @val.required()
-  urbanVillageId: string;
-
-  @val.required()
-  postCode: string;
+  @collection.ref(UrbanVillage)
+  urbanVillage: UrbanVillage;
 
   @route.controller()
   @collection.ref([ShopBranch])

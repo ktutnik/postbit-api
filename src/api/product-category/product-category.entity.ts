@@ -17,7 +17,8 @@ export class ProductCategory extends EntityBase {
   shopId: string;
 
   @noop()
-  parentId: string;
+  @collection.ref(ProductCategory)
+  parent: ProductCategory;
 
   @noop()
   thumbnail: string;

@@ -13,8 +13,6 @@ export class ProductVariant extends EntityBase {
   value: string;
 
   @val.required()
-  attributeId: string;
-
-  @bind.query("id")
+  @collection.ref(ProductAttribute)
   attribute: ProductAttribute;
 }

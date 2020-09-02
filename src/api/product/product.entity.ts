@@ -3,6 +3,9 @@ import { route, val, authorize, bind } from "plumier";
 import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 import { ProductStock } from "../product-stock/product-stock.entity";
+import { Image } from "../image/image.entity";
+import { ProductAttribute } from "../product-attribute/product-attribute.entity";
+import { ProductCategory } from "../product-category/product-category.entity";
 
 class PromoRange {
   startDate: Date;
@@ -48,16 +51,19 @@ export class Product extends EntityBase {
   basePrice: number;
 
   @val.required()
-  categoryId: string;
+  @collection.ref(ProductCategory)
+  category: ProductCategory;
 
   @noop()
-  imageId: string;
+  @collection.ref(Image)
+  cover: Image;
 
   @noop()
   promoRange: PromoRange;
 
   @val.required()
-  attributeId: string;
+  @collection.ref(ProductAttribute)
+  attribute: ProductAttribute;
 
   @val.required()
   @collection.property({ default: false })

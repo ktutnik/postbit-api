@@ -1,6 +1,7 @@
 import { EntityBase } from "../_shared";
 import { collection } from "@plumier/mongoose";
 import { val, route } from "plumier";
+import { Country } from "../country/country.entity";
 
 @collection()
 @route.controller()
@@ -9,5 +10,6 @@ export class Province extends EntityBase {
   name: string;
 
   @val.required()
-  countryId: string;
+  @collection.ref(Country)
+  country: Country;
 }

@@ -2,6 +2,7 @@ import { EntityBase } from "../_shared";
 import { collection, model } from "@plumier/mongoose";
 import { val, route } from "plumier";
 import { noop } from "tinspector";
+import { Shop } from "../shop/shop.entity";
 
 type ExtensionType = "jpg" | "png" | "jpeg";
 
@@ -18,7 +19,8 @@ export class Image extends EntityBase {
   description: string;
 
   @val.required()
-  shopId: string;
+  @collection.ref(Shop)
+  shop: Shop;
 
   @noop()
   location: string;
