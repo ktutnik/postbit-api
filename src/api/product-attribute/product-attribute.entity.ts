@@ -3,12 +3,18 @@ import { route, val, authorize } from "plumier";
 import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 
+type AttributeType = "choose" | "color";
 @collection()
-export class ShopTag extends EntityBase {
+export class ProductAttribute extends EntityBase {
   @val.required()
-  text: string;
+  name: string;
+
+  @noop()
+  summary: string;
 
   @val.required()
-  @val.slug()
-  slug: string;
+  type: AttributeType;
+
+  @val.required()
+  shopId: string;
 }

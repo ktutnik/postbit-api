@@ -49,9 +49,11 @@ export class Shop extends EntityBase {
   @val.required()
   postCode: string;
 
-  @collection.ref(ShopBranch)
+  @route.controller()
+  @collection.ref([ShopBranch])
   branches: ShopBranch[];
 
-  @collection.ref(ShopTag)
+  @route.controller()
+  @collection.ref([ShopTag])
   tags: ShopTag[];
 }

@@ -9,6 +9,10 @@ import Plumier, {
 import { MongooseFacility } from "@plumier/mongoose";
 import { JwtAuthFacility } from "@plumier/jwt";
 import { SwaggerFacility } from "@plumier/swagger";
+import {
+  CustomControllerGeneric,
+  CustomOneToManyControllerGeneric,
+} from "./api/_shared/";
 
 export function createApp(config?: Partial<Configuration>): Promise<Koa> {
   return new Plumier()
@@ -33,5 +37,11 @@ export function createApp(config?: Partial<Configuration>): Promise<Koa> {
         uri: process.env.MONGODB_URI || "mongodb://localhost:27017/postbit",
       })
     )
+    .set({
+      genericController: [
+        CustomControllerGeneric,
+        CustomOneToManyControllerGeneric,
+      ],
+    })
     .initialize();
 }

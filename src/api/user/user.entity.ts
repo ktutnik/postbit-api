@@ -1,7 +1,9 @@
+import mongoose from "mongoose";
 import { collection } from "@plumier/mongoose";
 import { authorize, val, route } from "plumier";
 import { EntityBase, UserRole } from "../_shared";
 import { ownerOnly, checkConfirmPassword } from "./user.filter";
+import { genSalt, hash } from "bcryptjs";
 
 @collection()
 @checkConfirmPassword()
@@ -23,6 +25,11 @@ export class User extends EntityBase {
   @val.required()
   lastName: string;
 
-  @authorize.role("Admin")
   role: UserRole;
+
+  @collection.preSave()
+  async beforeSave() {
+    const salt = await genSalt();
+    this.password = await hash(this.password, salt);
+  }
 }

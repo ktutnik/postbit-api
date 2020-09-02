@@ -5,7 +5,6 @@ import { EntityBase } from "../_shared";
 
 @collection()
 @route.controller()
-@authorize.public()
 export class ProductCategory extends EntityBase {
   @val.required()
   name: string;
@@ -18,5 +17,15 @@ export class ProductCategory extends EntityBase {
   shopId: string;
 
   @noop()
-  parentCategoryId: string;
+  parentId: string;
+
+  @noop()
+  thumbnail: string;
+
+  @noop()
+  description: string;
+
+  @val.required()
+  @collection.property({ default: true })
+  status: boolean;
 }

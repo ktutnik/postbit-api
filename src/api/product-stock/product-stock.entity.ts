@@ -4,11 +4,16 @@ import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 
 @collection()
-export class ShopTag extends EntityBase {
+export class ProductStock extends EntityBase {
   @val.required()
-  text: string;
+  productId: string;
 
   @val.required()
-  @val.slug()
-  slug: string;
+  shopId: string;
+
+  @val.required()
+  variantId: string;
+
+  @val.required()
+  stock: number;
 }

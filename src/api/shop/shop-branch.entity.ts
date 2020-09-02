@@ -4,8 +4,6 @@ import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 
 @collection()
-@route.controller()
-@authorize.public()
 export class ShopBranch extends EntityBase {
   @val.required()
   name: string;
@@ -30,9 +28,6 @@ export class ShopBranch extends EntityBase {
 
   @val.required()
   urbanVillageId: string;
-
-  @val.required()
-  postCode: string;
 
   @val.required()
   active: boolean;

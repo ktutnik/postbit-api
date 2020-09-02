@@ -1,17 +1,13 @@
 import { EntityBase } from "../_shared";
 import { collection } from "@plumier/mongoose";
 import { route, val } from "plumier";
-import { Province } from "../province/province.entity";
 
 @collection()
 @route.controller()
-export class Country extends EntityBase {
+export class UserShop extends EntityBase {
   @val.required()
-  currency: string;
+  shopId: string;
 
   @val.required()
-  lang: string;
-
-  @val.required()
-  name: string;
+  userId: string;
 }
