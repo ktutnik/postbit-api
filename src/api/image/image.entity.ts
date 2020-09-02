@@ -6,7 +6,7 @@ import { noop } from "tinspector";
 type ExtensionType = "jpg" | "png" | "jpeg";
 
 @collection()
-@route.controller()
+//@route.controller()
 export class Image extends EntityBase {
   @val.required()
   name: string;

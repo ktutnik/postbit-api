@@ -1,4 +1,4 @@
-import { MongooseControllerGeneric } from "@plumier/mongoose";
+/*import { MongooseControllerGeneric } from "@plumier/mongoose";
 import { FormFile, route } from "plumier";
 import { type } from "tinspector";
 import { v1 } from "uuid";
@@ -18,4 +18,4 @@ export class ImageController extends MongooseControllerGeneric<Image, string> {
     data.location = location;
     return this.repo.insert(data);
   }
-}
+}*/
