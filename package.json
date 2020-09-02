@@ -8,28 +8,32 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
+    "@plumier/jwt": "1.0.0-canary.kela2rem.0",
     "@plumier/mongoose": "1.0.0-canary.kela2rem.0",
     "@plumier/social-login": "^1.0.0-rc.2",
-    "@plumier/jwt": "1.0.0-canary.kela2rem.0",
     "@plumier/swagger": "1.0.0-canary.kela2rem.0",
     "@plumier/typeorm": "1.0.0-canary.kela2rem.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^8.5.0",
+    "aws-sdk": "^2.744.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "plumier": "1.0.0-canary.kela2rem.0"
+    "plumier": "1.0.0-canary.kela2rem.0",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@types/jest": "^24.9.1",
+    "@types/shortid": "^0.0.29",
     "@types/supertest": "^2.0.8",
+    "@types/uuid": "^8.3.0",
     "jest": "^25.1.0",
+    "shortid": "^2.2.15",
     "supertest": "^4.0.2",
     "ts-jest": "^25.0.0",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typescript": "^3.7.5",
-    "@types/shortid": "^0.0.29",
-    "shortid": "^2.2.15"
+    "typescript": "^3.7.5"
   }
 }

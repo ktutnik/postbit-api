@@ -9,7 +9,6 @@ class PromoRange {
   endDate: Date;
 }
 @collection()
-@route.controller()
 export class Product extends EntityBase {
   @val.required()
   name: string;
@@ -52,10 +51,9 @@ export class Product extends EntityBase {
   categoryId: string;
 
   @noop()
-  photoCover: string;
+  imageId: string;
 
   @noop()
-  @collection.ref(PromoRange)
   promoRange: PromoRange;
 
   @val.required()
@@ -72,6 +70,4 @@ export class Product extends EntityBase {
   @val.required()
   @collection.property({ default: true })
   visible: boolean;
-
-  stocks: ProductStock[];
 }

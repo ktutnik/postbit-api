@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
 import { collection } from "@plumier/mongoose";
-import { authorize, val, route } from "plumier";
+import { authorize, val, route, bind } from "plumier";
 import { EntityBase, UserRole } from "../_shared";
 import { ownerOnly, checkConfirmPassword } from "./user.filter";
 import { genSalt, hash } from "bcryptjs";
+import { noop } from "tinspector";
+import { Image } from "../image/image.entity";
 
 @collection()
 @checkConfirmPassword()
 @route.controller()
 export class User extends EntityBase {
-  @authorize.custom(ownerOnly, { access: "read" })
+  //@authorize.custom(ownerOnly, { access: "read" })
   @val.required()
   @val.email()
   @val.unique()
@@ -24,6 +26,12 @@ export class User extends EntityBase {
 
   @val.required()
   lastName: string;
+
+  @noop()
+  imageId: string;
+
+  @collection.ref(Image)
+  image: Image;
 
   role: UserRole;
 
