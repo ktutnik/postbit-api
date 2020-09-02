@@ -22,6 +22,6 @@ export class ShopBranch extends EntityBase {
   @val.required()
   active: boolean;
 
-  /*@collection.ref(Shop)
-  shop: Shop;*/
+  @collection.ref((x) => Shop)
+  shop: Shop;
 }
