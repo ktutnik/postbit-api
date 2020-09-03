@@ -3,14 +3,14 @@ import { collection } from "@plumier/mongoose";
 import { route, authorize, val } from "plumier";
 import { noop } from "tinspector";
 import { Product } from "../product/product.entity";
-import { PurchaseOrder } from "../purchase-order/purchase-order.entity";
+import { Purchase } from "../purchase/purchase.entity";
 
 @collection()
 @route.controller()
-export class PurchaseOrderDetail extends EntityBase {
+export class PurchaseDetail extends EntityBase {
   @val.required()
-  @collection.ref(PurchaseOrder)
-  purchaseOrder: PurchaseOrder;
+  @collection.ref(Purchase)
+  purchaseOrder: Purchase;
 
   @val.required()
   @collection.ref(Product)

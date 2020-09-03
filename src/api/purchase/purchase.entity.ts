@@ -7,7 +7,7 @@ import { ShopBranch } from "../shop-branch/shop-branch.entity";
 
 @collection()
 @route.controller()
-export class PurchaseOrder extends EntityBase {
+export class Purchase extends EntityBase {
   @val.required()
   invoiceNumber: string;
 
