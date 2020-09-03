@@ -7,9 +7,9 @@ import { Image } from "./image.entity";
 import { uploadToS3 } from "../../helper/";
 
 @generic.type(Image, String)
-@route.ignore({ applyTo: "save" })
+@route.ignore({ applyTo: "save" }) // disable existing base save
 export class ImageController extends MongooseControllerGeneric<Image, String> {
-  @route.post("")
+  @route.post("") // override base save with new one function
   @type({ id: String })
   async saveWithImage(file: FormFile, data: Image) {
     const buf = Buffer.from(file);

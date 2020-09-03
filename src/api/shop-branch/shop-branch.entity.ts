@@ -1,10 +1,11 @@
 import { collection } from "@plumier/mongoose";
-import { val } from "plumier";
+import { val, route, bind } from "plumier";
 import { EntityBase } from "../_shared";
 import { UrbanVillage } from "../urban-village/urban-village.entity";
-import { Shop } from "./shop.entity";
+import { Shop } from "../shop/shop.entity";
 
 @collection()
+@route.controller()
 export class ShopBranch extends EntityBase {
   @val.required()
   name: string;
@@ -22,6 +23,7 @@ export class ShopBranch extends EntityBase {
   @val.required()
   active: boolean;
 
+  @bind.query("pid")
   @collection.ref((x) => Shop)
   shop: Shop;
 }

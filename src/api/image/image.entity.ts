@@ -7,7 +7,6 @@ import { Shop } from "../shop/shop.entity";
 type ExtensionType = "jpg" | "png" | "jpeg";
 
 @collection()
-//@route.controller()
 export class Image extends EntityBase {
   @val.required()
   name: string;

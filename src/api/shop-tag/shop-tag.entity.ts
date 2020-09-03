@@ -1,9 +1,10 @@
 import { collection } from "@plumier/mongoose";
-import { route, val, authorize } from "plumier";
-import { noop } from "tinspector";
+import { route, val, authorize, bind } from "plumier";
 import { EntityBase } from "../_shared";
+import { Shop } from "../shop/shop.entity";
 
 @collection()
+@route.controller()
 export class ShopTag extends EntityBase {
   @val.required()
   text: string;
@@ -11,4 +12,8 @@ export class ShopTag extends EntityBase {
   @val.required()
   @val.slug()
   slug: string;
+
+  @bind.query("pid")
+  @collection.ref(Shop)
+  shop: Shop;
 }

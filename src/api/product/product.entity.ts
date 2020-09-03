@@ -1,18 +1,24 @@
 import { collection } from "@plumier/mongoose";
 import { route, val, authorize, bind } from "plumier";
-import { noop } from "tinspector";
+import { noop, reflect } from "tinspector";
 import { EntityBase } from "../_shared";
-import { ProductStock } from "../product-stock/product-stock.entity";
 import { Image } from "../image/image.entity";
 import { ProductAttribute } from "../product-attribute/product-attribute.entity";
 import { ProductCategory } from "../product-category/product-category.entity";
 
-class PromoRange {
+@collection()
+export class PromoRange {
+  @noop()
   startDate: Date;
+  @noop()
   endDate: Date;
 }
 @collection()
 export class Product extends EntityBase {
+  @noop()
+  @collection.ref(PromoRange)
+  promoRange: PromoRange;
+
   @val.required()
   name: string;
 
@@ -39,6 +45,7 @@ export class Product extends EntityBase {
   weight: number;
 
   @noop()
+  @val.unique()
   sku: string;
 
   @noop()
@@ -57,9 +64,6 @@ export class Product extends EntityBase {
   @noop()
   @collection.ref(Image)
   cover: Image;
-
-  @noop()
-  promoRange: PromoRange;
 
   @val.required()
   @collection.ref(ProductAttribute)

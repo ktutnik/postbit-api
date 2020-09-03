@@ -5,6 +5,7 @@ import {
   CustomOneToManyControllerGeneric,
 } from "./generic.controller";
 type UserRole = "User" | "Admin" | "Manager" | "Cashier";
+type PaymentType = "Cash" | "CreditCard" | "DebitCard" | "Debt";
 
 export {
   EntityBase,
@@ -12,4 +13,5 @@ export {
   CustomControllerGeneric,
   CustomOneToManyControllerGeneric,
   LoginUser,
+  PaymentType,
 };
