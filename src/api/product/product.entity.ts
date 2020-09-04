@@ -1,10 +1,11 @@
 import { collection } from "@plumier/mongoose";
-import { route, val, authorize, bind } from "plumier";
-import { noop, reflect } from "tinspector";
+import { route, val } from "plumier";
+import { noop } from "tinspector";
 import { EntityBase } from "../_shared";
 import { Image } from "../image/image.entity";
 import { ProductAttribute } from "../product-attribute/product-attribute.entity";
 import { ProductCategory } from "../product-category/product-category.entity";
+import { ProductVariant } from "../product-variant/product-variant.entity";
 
 @collection()
 export class PromoRange {
@@ -13,6 +14,55 @@ export class PromoRange {
   @noop()
   endDate: Date;
 }
+
+@collection()
+export class Shipping {
+  @noop()
+  height: Number;
+  @noop()
+  width: Number;
+  @noop()
+  length: Number;
+  @val.required()
+  weight: Number;
+}
+
+@collection()
+export class ProductImage {
+  @val.required()
+  key: Number;
+  @noop()
+  image: Image;
+}
+
+@collection()
+export class Variant {
+  @val.required()
+  attribute: ProductAttribute;
+
+  @val.required()
+  variant: ProductVariant;
+}
+
+@collection()
+export class ProductInventory extends EntityBase {
+  @val.required()
+  sku: string;
+
+  @val.required()
+  @collection.ref([Variant])
+  variants: Variant[];
+
+  @val.required()
+  stock: Number;
+
+  @val.required()
+  sellPrice: Number;
+
+  @val.required()
+  basePrice: Number;
+}
+
 @collection()
 export class Product extends EntityBase {
   @noop()
@@ -32,17 +82,8 @@ export class Product extends EntityBase {
   @noop()
   description: string;
 
-  @noop()
-  height: number;
-
-  @noop()
-  length: number;
-
-  @noop()
-  width: number;
-
-  @noop()
-  weight: number;
+  @val.required()
+  shipping: Shipping;
 
   @noop()
   @val.unique()
@@ -65,9 +106,16 @@ export class Product extends EntityBase {
   @collection.ref(Image)
   cover: Image;
 
+  @collection.ref([ProductImage])
+  productGallery: ProductImage[];
+
+  @route.controller()
   @val.required()
-  @collection.ref(ProductAttribute)
-  attribute: ProductAttribute;
+  @collection.ref([ProductInventory])
+  inventories: ProductInventory[];
+
+  @val.required()
+  totalStock: Number;
 
   @val.required()
   @collection.property({ default: false })

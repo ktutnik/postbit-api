@@ -2,23 +2,23 @@ import { EntityBase } from "../_shared";
 import { collection } from "@plumier/mongoose";
 import { route, authorize, val } from "plumier";
 import { noop } from "tinspector";
-import { Supplier } from "../supplier/supplier.entity";
 import { ShopBranch } from "../shop-branch/shop-branch.entity";
-import { Shop } from "../shop/shop.entity";
+import { User } from "../user/user.entity";
+import { ChannelMarketing } from "../shop/channel-marketing.entity";
 import { PaymentType } from "../shop/payment-type.entity";
-import { PurchaseDetail } from "./purchase-detail.entity";
-import { PurchaseRetur } from "./purchase-retur.entity";
-import { PurchaseReturDetail } from "./purchase-retur-detail.entity";
+import { OrderDetail } from "./order-detail.entity";
+import { OrderRetur } from "./order-retur.entity";
+import { OrderReturDetail } from "./order-retur-detail";
 
 @collection()
 @route.controller()
-export class Purchase extends EntityBase {
+export class Order extends EntityBase {
   @val.required()
   invoiceNumber: string;
 
   @val.required()
-  @collection.ref(Supplier)
-  supplier: Supplier;
+  @collection.ref(User)
+  user: User;
 
   @val.required()
   transactionDate: Date;
@@ -26,13 +26,16 @@ export class Purchase extends EntityBase {
   @val.required()
   paymentDate: Date;
 
-  @val.required()
-  @collection.ref(Shop)
-  shop: Shop;
-
-  @val.required()
+  @noop()
   @collection.ref(ShopBranch)
   shopBranch: ShopBranch;
+
+  @noop()
+  @collection.ref(ChannelMarketing)
+  onlineShop: ChannelMarketing;
+
+  @val.required()
+  isSellOnline: boolean;
 
   @noop()
   note: string;
@@ -44,22 +47,27 @@ export class Purchase extends EntityBase {
   discount: Number;
 
   @noop()
-  total: Number;
-
-  @noop()
-  downPayment: Number;
+  tax: Number;
 
   @noop()
   shippingPrice: Number;
 
   @authorize.readonly()
+  total: Number;
+
+  @noop()
+  downPayment: Number;
+
+  @authorize.readonly()
   remainingPayment: Number;
 
+  // sub document
   @route.controller()
-  @collection.ref((x) => [PurchaseDetail])
-  details: PurchaseDetail[];
+  @collection.ref((x) => [OrderDetail])
+  details: OrderDetail[];
 
+  // sub document
   @route.controller()
-  @collection.ref((x) => [PurchaseRetur])
-  retur: PurchaseRetur[];
+  @collection.ref((x) => [OrderRetur])
+  returs: OrderRetur[];
 }

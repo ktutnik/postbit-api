@@ -3,6 +3,9 @@ import { route, val, authorize } from "plumier";
 import { noop, reflect } from "tinspector";
 import { EntityBase } from "../_shared";
 import { UrbanVillage } from "../urban-village/urban-village.entity";
+import { PaymentType } from "./payment-type.entity";
+import { ChannelMarketing } from "./channel-marketing.entity";
+import { ShippingAgent } from "./shipping-agent.entity";
 
 @collection()
 @route.controller()
@@ -33,4 +36,16 @@ export class Shop extends EntityBase {
   @val.required()
   @collection.ref(UrbanVillage)
   urbanVillage: UrbanVillage;
+
+  @route.controller()
+  @collection.ref((x) => [PaymentType])
+  payment: PaymentType[];
+
+  @route.controller()
+  @collection.ref((x) => [ChannelMarketing])
+  marketing: ChannelMarketing[];
+
+  @route.controller()
+  @collection.ref((x) => [ShippingAgent])
+  shippingAgent: ShippingAgent[];
 }
