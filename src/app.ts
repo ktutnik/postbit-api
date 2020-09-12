@@ -17,7 +17,12 @@ import {
 export function createApp(config?: Partial<Configuration>): Promise<Koa> {
   return new Plumier()
     .set(config || {})
-    .set(new WebApiFacility({ bodyParser: { multipart: true } }))
+    .set(
+      new WebApiFacility({
+        bodyParser: { multipart: true },
+        cors: { origin: "*" },
+      })
+    )
     .set(
       new ControllerFacility({
         controller: __dirname,

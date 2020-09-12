@@ -5,7 +5,7 @@ import { EntityBase } from "../_shared";
 import { UrbanVillage } from "../urban-village/urban-village.entity";
 import { PaymentType } from "./payment-type.entity";
 import { ChannelMarketing } from "./channel-marketing.entity";
-import { ShippingAgent } from "./shipping-agent.entity";
+import { ShippingAgentService } from "../shipping-agent/shipping-agent-service";
 
 @collection()
 @route.controller()
@@ -45,7 +45,6 @@ export class Shop extends EntityBase {
   @collection.ref((x) => [ChannelMarketing])
   marketing: ChannelMarketing[];
 
-  @route.controller()
-  @collection.ref((x) => [ShippingAgent])
-  shippingAgent: ShippingAgent[];
+  @collection.ref((x) => [ShippingAgentService])
+  shippingServices: ShippingAgentService[];
 }

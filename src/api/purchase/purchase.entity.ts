@@ -30,10 +30,6 @@ export class Purchase extends EntityBase {
   @collection.ref(Shop)
   shop: Shop;
 
-  @val.required()
-  @collection.ref(ShopBranch)
-  shopBranch: ShopBranch;
-
   @noop()
   note: string;
 

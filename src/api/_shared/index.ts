@@ -4,7 +4,7 @@ import {
   CustomControllerGeneric,
   CustomOneToManyControllerGeneric,
 } from "./generic.controller";
-type UserRole = "User" | "Admin" | "ShopManager" | "Cashier";
+type UserRole = "User" | "Admin" | "ShopManager" | "Cashier" | "RefreshToken";
 
 export {
   EntityBase,

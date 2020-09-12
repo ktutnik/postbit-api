@@ -2,11 +2,10 @@ import { EntityBase } from "../_shared";
 import { collection } from "@plumier/mongoose";
 import { route, val, bind } from "plumier";
 import { noop } from "tinspector";
-import { Shop } from "./shop.entity";
 import { ShippingAgent } from "./shipping-agent.entity";
 
 @collection()
-export class ShippingAgentDetail extends EntityBase {
+export class ShippingAgentService extends EntityBase {
   @val.required()
   name: string;
 
