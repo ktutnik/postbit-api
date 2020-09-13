@@ -6,6 +6,7 @@ import { ownerOnly, checkConfirmPassword } from "./user.filter";
 import { genSalt, hash } from "bcryptjs";
 import { noop } from "tinspector";
 import { Image } from "../image/image.entity";
+import { Shop } from "../shop/shop.entity";
 
 @collection()
 @checkConfirmPassword()
@@ -30,7 +31,12 @@ export class User extends EntityBase {
   @collection.ref(Image)
   image: Image;
 
+  @val.required()
   role: UserRole;
+
+  @val.required()
+  @collection.ref(Shop)
+  shop: Shop;
 
   @collection.preSave()
   async beforeSave() {

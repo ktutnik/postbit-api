@@ -9,7 +9,6 @@ import { ShippingAgentService } from "../shipping-agent/shipping-agent-service";
 
 @collection()
 @route.controller()
-@authorize.public()
 export class Shop extends EntityBase {
   @val.required()
   name: string;
@@ -34,7 +33,7 @@ export class Shop extends EntityBase {
   address: string;
 
   @val.required()
-  @collection.ref(UrbanVillage)
+  @collection.ref((x) => UrbanVillage)
   urbanVillage: UrbanVillage;
 
   @route.controller()

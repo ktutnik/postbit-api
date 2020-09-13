@@ -34,7 +34,6 @@ export function createApp(config?: Partial<Configuration>): Promise<Koa> {
     .set(
       new JwtAuthFacility({
         secret: process.env.JWT_SECRET || "fYA3#pM5cPSzRDgZ",
-        global: authorize.public(),
       })
     )
     .set(

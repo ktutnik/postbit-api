@@ -1,6 +1,6 @@
 import { EntityBase } from "../_shared";
 import { collection } from "@plumier/mongoose";
-import { route, val } from "plumier";
+import { authorize, route, val } from "plumier";
 import { SubDistrict } from "../sub-district/sub-district.entity";
 
 @collection()

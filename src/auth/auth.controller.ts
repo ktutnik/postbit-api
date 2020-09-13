@@ -39,7 +39,7 @@ export class AuthController {
     return this.createTokens(saved);
   }
 
-  async current(@bind.user() user: LoginUser) {
+  async me(@bind.user() user: LoginUser) {
     const saved = await this.userModel.findById(user.userId);
     if (!saved) throw new HttpStatusError(404, "User not found");
     return saved;
