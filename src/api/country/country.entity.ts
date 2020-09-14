@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { authorize, route, val } from "plumier";
 
 @collection()
@@ -15,4 +15,4 @@ export class Country extends EntityBase {
   name: string;
 }
 
-model(Country);
+proxy(Country);

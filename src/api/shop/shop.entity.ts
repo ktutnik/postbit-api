@@ -1,4 +1,4 @@
-import model, { collection } from "@plumier/mongoose";
+import model, { collection, proxy } from "@plumier/mongoose";
 import { route, val, authorize } from "plumier";
 import { noop, reflect } from "tinspector";
 import { EntityBase } from "../_shared";
@@ -47,4 +47,4 @@ export class Shop extends EntityBase {
   shippingServices: ShippingAgentService[];
 }
 
-model(Shop);
+proxy(Shop);

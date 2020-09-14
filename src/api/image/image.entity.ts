@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { val, route } from "plumier";
 import { noop } from "tinspector";
 import { Shop } from "../shop/shop.entity";
@@ -24,4 +24,4 @@ export class Image extends EntityBase {
   @noop()
   location: string;
 }
-model(Image);
+proxy(Image);

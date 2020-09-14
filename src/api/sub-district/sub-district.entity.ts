@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { route, val } from "plumier";
 import { District } from "../district/district.entity";
 
@@ -13,4 +13,4 @@ export class SubDistrict extends EntityBase {
   @collection.ref((x) => District)
   district: string;
 }
-model(SubDistrict);
+proxy(SubDistrict);

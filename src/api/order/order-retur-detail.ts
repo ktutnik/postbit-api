@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { val } from "plumier";
 import { Product, ProductInventory } from "../product/product.entity";
 import { OrderRetur } from "./order-retur.entity";
@@ -21,4 +21,5 @@ export class OrderReturDetail extends EntityBase {
   @val.required()
   qty: Number;
 }
-model(OrderReturDetail);
+
+proxy(OrderReturDetail);

@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { route, authorize, val, bind } from "plumier";
 import { Product, ProductInventory } from "../product/product.entity";
 import { Purchase } from "./purchase.entity";
@@ -28,4 +28,4 @@ export class PurchaseDetail extends EntityBase {
   @authorize.readonly()
   totalPrice: Number;
 }
-model(PurchaseDetail);
+proxy(PurchaseDetail);

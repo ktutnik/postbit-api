@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection, model } from "@plumier/mongoose";
+import { collection, model, proxy } from "@plumier/mongoose";
 import { route, authorize, val } from "plumier";
 import { noop } from "tinspector";
 import { ShopBranch } from "../shop-branch/shop-branch.entity";
@@ -70,4 +70,4 @@ export class Order extends EntityBase {
   @collection.ref((x) => [OrderRetur])
   returs: OrderRetur[];
 }
-model(Order);
+proxy(Order);
