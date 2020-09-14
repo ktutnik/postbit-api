@@ -12,7 +12,6 @@ export class ChannelMarketing extends EntityBase {
   @noop()
   key: string; // api key
 
-  @bind.query("pid")
   @collection.ref((x) => Shop)
   shop: Shop;
 }

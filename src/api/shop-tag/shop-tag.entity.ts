@@ -13,7 +13,6 @@ export class ShopTag extends EntityBase {
   @val.slug()
   slug: string;
 
-  @bind.query("pid")
   @collection.ref(Shop)
   shop: Shop;
 }

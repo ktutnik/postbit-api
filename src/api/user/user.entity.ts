@@ -10,6 +10,7 @@ import { Shop } from "../shop/shop.entity";
 
 @collection()
 @checkConfirmPassword()
+@authorize.public()
 @route.controller()
 export class User extends EntityBase {
   //@authorize.custom(ownerOnly, { access: "read" })
@@ -31,7 +32,8 @@ export class User extends EntityBase {
   @collection.ref(Image)
   image: Image;
 
-  @val.required()
+  @collection.property({ default: "User" })
+  @authorize.write("SuperAdmin", "Admin")
   role: UserRole;
 
   @val.required()

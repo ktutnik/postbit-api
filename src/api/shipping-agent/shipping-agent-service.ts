@@ -12,7 +12,6 @@ export class ShippingAgentService extends EntityBase {
   @noop()
   code: string; // api key
 
-  @bind.query("pid")
   @collection.ref((x) => ShippingAgent)
   agent: ShippingAgent;
 }

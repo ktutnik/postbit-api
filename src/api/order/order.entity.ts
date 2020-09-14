@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection } from "@plumier/mongoose";
+import { collection, model } from "@plumier/mongoose";
 import { route, authorize, val } from "plumier";
 import { noop } from "tinspector";
 import { ShopBranch } from "../shop-branch/shop-branch.entity";
@@ -8,7 +8,6 @@ import { ChannelMarketing } from "../shop/channel-marketing.entity";
 import { PaymentType } from "../shop/payment-type.entity";
 import { OrderDetail } from "./order-detail.entity";
 import { OrderRetur } from "./order-retur.entity";
-import { OrderReturDetail } from "./order-retur-detail";
 
 @collection()
 @route.controller()
@@ -17,7 +16,7 @@ export class Order extends EntityBase {
   invoiceNumber: string;
 
   @val.required()
-  @collection.ref(User)
+  @collection.ref((x) => User)
   user: User;
 
   @val.required()
@@ -27,11 +26,11 @@ export class Order extends EntityBase {
   paymentDate: Date;
 
   @noop()
-  @collection.ref(ShopBranch)
+  @collection.ref((x) => ShopBranch)
   shopBranch: ShopBranch;
 
   @noop()
-  @collection.ref(ChannelMarketing)
+  @collection.ref((x) => ChannelMarketing)
   onlineShop: ChannelMarketing;
 
   @val.required()
@@ -71,3 +70,4 @@ export class Order extends EntityBase {
   @collection.ref((x) => [OrderRetur])
   returs: OrderRetur[];
 }
+model(Order);

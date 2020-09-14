@@ -12,7 +12,6 @@ export class PaymentType extends EntityBase {
   @noop()
   value: string; // api key
 
-  @bind.query("pid")
   @collection.ref((x) => Shop)
   shop: Shop;
 }

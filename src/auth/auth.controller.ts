@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { HttpStatusError, route, authorize, bind } from "plumier";
 import { collection, model } from "@plumier/mongoose";
+import { type } from "tinspector";
 import { LoginUser } from "../api/";
 import { User } from "../api/user/user.entity";
 
@@ -39,6 +40,7 @@ export class AuthController {
     return this.createTokens(saved);
   }
 
+  @type(User)
   async me(@bind.user() user: LoginUser) {
     const saved = await this.userModel.findById(user.userId);
     if (!saved) throw new HttpStatusError(404, "User not found");

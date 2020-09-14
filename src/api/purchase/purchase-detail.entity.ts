@@ -1,5 +1,5 @@
 import { EntityBase } from "../_shared";
-import { collection } from "@plumier/mongoose";
+import { collection, model } from "@plumier/mongoose";
 import { route, authorize, val, bind } from "plumier";
 import { Product, ProductInventory } from "../product/product.entity";
 import { Purchase } from "./purchase.entity";
@@ -7,17 +7,16 @@ import { Purchase } from "./purchase.entity";
 @collection()
 @route.controller()
 export class PurchaseDetail extends EntityBase {
-  @bind.query("pid")
   @val.required()
-  @collection.ref(Purchase)
+  @collection.ref((x) => Purchase)
   purchase: Purchase;
 
   @val.required()
-  @collection.ref(Product)
+  @collection.ref((x) => Product)
   product: Product;
 
   @val.required()
-  @collection.ref(ProductInventory)
+  @collection.ref((x) => ProductInventory)
   inventory: ProductInventory;
 
   @val.required()
@@ -29,3 +28,4 @@ export class PurchaseDetail extends EntityBase {
   @authorize.readonly()
   totalPrice: Number;
 }
+model(PurchaseDetail);

@@ -1,6 +1,6 @@
 import { EntityBase } from "../_shared";
-import { collection } from "@plumier/mongoose";
-import { route, val } from "plumier";
+import { collection, model } from "@plumier/mongoose";
+import { val } from "plumier";
 import { Product, ProductInventory } from "../product/product.entity";
 import { OrderRetur } from "./order-retur.entity";
 
@@ -11,13 +11,14 @@ export class OrderReturDetail extends EntityBase {
   orderRetur: OrderRetur;
 
   @val.required()
-  @collection.ref(Product)
+  @collection.ref((x) => Product)
   product: Product;
 
   @val.required()
-  @collection.ref(ProductInventory)
+  @collection.ref((x) => ProductInventory)
   inventory: ProductInventory;
 
   @val.required()
   qty: Number;
 }
+model(OrderReturDetail);

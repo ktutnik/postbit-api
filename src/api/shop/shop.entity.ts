@@ -1,4 +1,4 @@
-import { collection } from "@plumier/mongoose";
+import model, { collection } from "@plumier/mongoose";
 import { route, val, authorize } from "plumier";
 import { noop, reflect } from "tinspector";
 import { EntityBase } from "../_shared";
@@ -8,7 +8,6 @@ import { ChannelMarketing } from "./channel-marketing.entity";
 import { ShippingAgentService } from "../shipping-agent/shipping-agent-service";
 
 @collection()
-@route.controller()
 export class Shop extends EntityBase {
   @val.required()
   name: string;
@@ -47,3 +46,5 @@ export class Shop extends EntityBase {
   @collection.ref((x) => [ShippingAgentService])
   shippingServices: ShippingAgentService[];
 }
+
+model(Shop);

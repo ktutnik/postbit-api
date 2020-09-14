@@ -23,7 +23,6 @@ export class ShopBranch extends EntityBase {
   @val.required()
   active: boolean;
 
-  @bind.query("pid")
   @collection.ref((x) => Shop)
   shop: Shop;
 }

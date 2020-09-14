@@ -7,7 +7,6 @@ import { PurchaseReturDetail } from "./purchase-retur-detail.entity";
 
 @collection()
 export class PurchaseRetur extends EntityBase {
-  @bind.query("pid")
   @val.required()
   @collection.ref((x) => Purchase)
   purchase: Purchase;

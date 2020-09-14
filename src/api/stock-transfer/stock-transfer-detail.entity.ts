@@ -7,17 +7,16 @@ import { StockTransfer } from "./stock-transfer.entity";
 @collection()
 @route.controller()
 export class StockTransferDetail extends EntityBase {
-  @bind.query("pid")
   @val.required()
-  @collection.ref(StockTransfer)
+  @collection.ref((x) => StockTransfer)
   stockTransfer: StockTransfer;
 
   @val.required()
-  @collection.ref(Product)
+  @collection.ref((x) => Product)
   product: Product;
 
   @val.required()
-  @collection.ref(ProductInventory)
+  @collection.ref((x) => ProductInventory)
   inventory: ProductInventory;
 
   @val.required()
